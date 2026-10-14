@@ -1,0 +1,441 @@
+/* ==========================================================
+   User Registration Form Styling
+   Experiment 03: Client-Side Validation
+   ========================================================== */
+
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-ring: rgba(79, 70, 229, 0.2);
+  --bg-gradient: linear-gradient(135deg, #eef2ff 0%, #f8fafc 50%, #e0e7ff 100%);
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #cbd5e1;
+  --input-bg: #f8fafc;
+  --input-focus-bg: #ffffff;
+  --danger-color: #dc2626;
+  --danger-bg: #fef2f2;
+  --danger-border: #f87171;
+  --success-color: #16a34a;
+  --success-bg: #f0fdf4;
+  --success-border: #4ade80;
+  --radius-lg: 18px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+  --shadow-card: 0 20px 45px -10px rgba(30, 41, 59, 0.12), 0 10px 20px -5px rgba(30, 41, 59, 0.04);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 16px;
+  line-height: 1.5;
+}
+
+.page-wrapper {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Card Container */
+.registration-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top Accent Line */
+.registration-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4, #6366f1);
+}
+
+/* Header */
+.card-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: #eef2ff;
+  color: var(--primary-color);
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.header-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.header-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Form Layout Grid */
+.signup-form {
+  display: block;
+}
+
+.form-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 22px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field label,
+.group-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.mark-required {
+  color: var(--danger-color);
+  margin-left: 2px;
+}
+
+/* Input Wrappers & Icons */
+.field-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.field-icon {
+  position: absolute;
+  left: 13px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.field-box input,
+.field-box select {
+  width: 100%;
+  height: 44px;
+  padding: 8px 14px 8px 40px;
+  font-size: 14px;
+  color: var(--text-main);
+  background-color: var(--input-bg);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.field-box input:focus,
+.field-box select:focus {
+  background-color: var(--input-focus-bg);
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3.5px var(--primary-ring);
+}
+
+/* Dropdown styling */
+.select-field-box select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 36px;
+}
+
+.custom-arrow {
+  position: absolute;
+  right: 14px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+/* Gender Radio Buttons */
+.gender-options {
+  display: flex;
+  gap: 10px;
+  height: 44px;
+  align-items: center;
+}
+
+.radio-pill {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 100%;
+  padding: 0 10px;
+  border: 1.5px solid var(--border-color);
+  background-color: var(--input-bg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #334155;
+  transition: all 0.2s ease;
+}
+
+.radio-pill:hover {
+  border-color: #94a3b8;
+  background-color: #f1f5f9;
+}
+
+.radio-pill input[type="radio"] {
+  accent-color: var(--primary-color);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* Checkbox and Legal agreement */
+.agreement-area {
+  margin: 18px 0 22px;
+  padding: 8px 0;
+}
+
+.custom-checkbox-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.custom-checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color);
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.checkbox-caption {
+  font-size: 13.5px;
+  color: #475569;
+}
+
+.legal-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.legal-link:hover {
+  text-decoration: underline;
+}
+
+/* Validation Feedback & Classes */
+.field-error {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--danger-color);
+  min-height: 17px;
+  margin-top: 4px;
+}
+
+/* Invalid State */
+input.is-invalid,
+select.is-invalid {
+  border-color: var(--danger-color) !important;
+  background-color: var(--danger-bg) !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12) !important;
+}
+
+.gender-options.is-invalid .radio-pill {
+  border-color: var(--danger-border);
+  background-color: var(--danger-bg);
+}
+
+.agreement-area.is-invalid {
+  background-color: var(--danger-bg);
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--danger-border);
+}
+
+/* Valid State */
+input.is-valid,
+select.is-valid {
+  border-color: var(--success-border) !important;
+  background-color: var(--success-bg) !important;
+}
+
+/* Buttons */
+.actions-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.btn-secondary:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Dynamic Success Notification Card */
+.success-panel {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+  margin-bottom: 6px;
+}
+
+.success-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #14532d;
+}
+
+.success-msg {
+  font-size: 15px;
+  font-weight: 600;
+  color: #166534;
+}
+
+.success-subtext {
+  font-size: 13.5px;
+  color: #15803d;
+}
+
+.btn-new-reg {
+  margin-top: 14px;
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #15803d;
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-new-reg:hover {
+  background: #166534;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Styles */
+@media (max-width: 700px) {
+  .registration-container {
+    padding: 26px 20px;
+  }
+  .form-columns {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .actions-row {
+    flex-direction: column;
+  }
+  .gender-options {
+    flex-direction: column;
+    height: auto;
+  }
+  .radio-pill {
+    width: 100%;
+    height: 40px;
+    justify-content: flex-start;
+    padding-left: 14px;
+  }
+}
